@@ -31,7 +31,7 @@ function App() {
 
 	const getWeatherByCity = (evt) => {
 		evt.preventDefault();
-
+		setLocation("");
 		woeidInfo(city, (error, { longitude, latitude, location, woeid } = {}) => {
 			if (error) {
 				alert(error);
