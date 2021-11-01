@@ -16,22 +16,47 @@ function App() {
 	const [ windDirection, setWindDirection ] = useState('');
 
 	const Result = () => (
-		<div>
-			<p>City Name {location}</p>
-			<p>Air Pressure {airPressure}</p>
-			<p>Date {currentDate}</p>
-			<p>Humidity {humidity}</p>
-			<p>Max Temp {maxTemp}</p>
-			<p>Min Temp {minTemp}</p>
-			<p>Predictability {predictability}</p>
-			<p>Weather Condition {weatherState}</p>
-			<p>Wind direction {windDirection}</p>
-		</div>
+		<table>
+			<tr>
+				<td>
+					<p><span>City Name</span> {location}</p>
+				</td>
+				<td>
+					<p><span>Air Pressure</span> {airPressure}</p>
+				</td>
+				<td>
+					<p><span>Date</span> {currentDate}</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					{' '}
+					<p><span>Humidity</span> {humidity}</p>
+				</td>
+				<td>
+					<p><span>Max Temp</span> {maxTemp}</p>
+				</td>
+				<td>
+					<p><span>Min Temp</span> {minTemp}</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p><span>Predictability</span> {predictability}</p>
+				</td>
+				<td>
+					<p><span>Weather Condition</span> {weatherState}</p>
+				</td>
+				<td>
+					<p><span>Wind direction</span> {windDirection}</p>
+				</td>
+			</tr>
+		</table>
 	);
 
 	const getWeatherByCity = (evt) => {
 		evt.preventDefault();
-		setLocation("");
+		setLocation('');
 		woeidInfo(city, (error, { longitude, latitude, location, woeid } = {}) => {
 			if (error) {
 				alert(error);
@@ -62,10 +87,10 @@ function App() {
 			<h1>Weather App</h1>
 			<form onSubmit={getWeatherByCity}>
 				<label>
-					City :
+					City
 					<input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
 				</label>
-				<input type="submit" value="Check Weather" />
+				<button type="submit">Check Weather</button>
 			</form>
 			{location ? <Result /> : null}
 		</div>
